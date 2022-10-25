@@ -11,7 +11,41 @@ class Breakfast{
     Breakfast(){
 
     }
-    private:
+    void output(vector<int> order){
+                unordered_map<int,int> ump;
+        for(int c: order){
+            ump[c]++;
+        }
+        int mainBreakfast = ump[1];
+        int sideBreakfast = ump[2];
+        if(mainBreakfast==0 && sideBreakfast==0) {
+            cout<<"Unable to process: Main and Side are missing\n";
+            return;
+        } else if(mainBreakfast==0){
+            cout<<"Unable to process: Main is missing\n";
+            return;
+        } else if(sideBreakfast==0){
+            cout<<"Unable to process: Side is missing\n";
+            return;
+        } else if(mainBreakfast>1 && sideBreakfast>1){
+            cout<<"Unable to process: Eggs and Toasts can not be ordered more than once.\n";
+            return;
+        }else if(mainBreakfast>1){
+            cout<<"Unable to process: Eggs can not be ordered more than once.\n";
+            return;
+        }else if(sideBreakfast>1){
+            cout<<"Unable to process: Side can not be ordered more than once.\n";
+            return;
+        }
+        int coffeeCount = ump[3];
+        cout<<"Eggs, Toast";
+        if(coffeeCount==1){
+            cout<<", Coffee\n";
+        } 
+        else if(coffeeCount>1){
+            cout<<", Coffee("<<coffeeCount<<")\n";
+        }
+    }
 
 };
 
@@ -21,7 +55,41 @@ class Lunch{
     Lunch(){
 
     }
-    private:
+    void output(vector<int> order){
+        unordered_map<int,int> ump;
+        for(int c: order){
+            ump[c]++;
+        }
+        int mainLunchCount = ump[1];
+        int sideLunchCount = ump[2];
+        if(mainLunchCount==0 && sideLunchCount==0) {
+            cout<<"Unable to process: Main is missing, Side is missing\n";
+            return;
+        } else if(mainLunchCount==0){
+            cout<<"Unable to process: Main is missing\n";
+            return;
+        } else if(sideLunchCount==0){
+            cout<<"Unable to process: Side is missing\n";
+            return;
+        } else if(mainLunchCount>1){
+            cout<<"Unable to process: Sandwich can not be ordered more than once.\n";
+            return;
+        }
+        cout<<"Sandwich";
+        if(sideLunchCount==1){
+            cout<<", Chips";
+        } 
+        else if(sideLunchCount>1){
+            cout<<", Chips("<<sideLunchCount<<")";
+        }
+        int sodaCount = ump[3];
+        if(sodaCount==0){
+            cout<<", Water.\n";
+        } else{
+            cout<<", Soda.";
+        }
+
+    }
 };
 
 class Dinner{
@@ -30,7 +98,47 @@ class Dinner{
     Dinner(){
 
     }
-    private:
+    void output(vector<int>order){
+        unordered_map<int,int> ump;
+        for(int c: order){
+            ump[c]++;
+        }
+        int mainDinnerCount = ump[1];
+        int sideDinnerCount = ump[2];
+        int wineCount = ump[3];
+        int cakeCount = ump[4];
+        if(mainDinnerCount==0 && sideDinnerCount==0) {
+            cout<<"Unable to process: Main is missing, Side is missing\n";
+            return;
+        } else if(mainDinnerCount==0){
+            cout<<"Unable to process: Main is missing\n";
+            return;
+        } else if(sideDinnerCount==0){
+            cout<<"Unable to process: Side is missing\n";
+            return;
+        } else if(cakeCount==0){
+            cout<<"Unable to process: Dessert is missing\n";
+            return;
+        } else if(mainDinnerCount>1){
+            cout<<"Unable to process: Steak can not be ordered more than once.\n";
+            return;
+        }else if(sideDinnerCount>1){
+            cout<<"Unable to process: Potatoes can not be ordered more than once.\n";
+            return;
+        }else if(wineCount>1){
+            cout<<"Unable to process: Wine can not be ordered more than once.\n";
+            return;
+        }else if(cakeCount>1){
+            cout<<"Unable to process: Cake can not be ordered more than once.\n";
+            return;
+        }
+        cout<<"Steak, Potatoes";
+        if(wineCount){
+            cout<<", Wine, Water, Cake.\n";
+        }else{
+            cout<<", Water, Cake.\n";
+        }
+    }
 };
 
 int main(){
@@ -62,40 +170,8 @@ int main(){
             if(inp==1 || inp==2 || inp==3)
                 order.push_back(inp);
         }
-        unordered_map<int,int> ump;
-        for(int c: order){
-            ump[c]++;
-        }
-        int mainBreakfast = ump[1];
-        int sideBreakfast = ump[2];
-        if(mainBreakfast==0 && sideBreakfast==0) {
-            cout<<"Unable to process: Main and Side are missing\n";
-            return 0;
-        } else if(mainBreakfast==0){
-            cout<<"Unable to process: Main is missing\n";
-            return 0;
-        } else if(sideBreakfast==0){
-            cout<<"Unable to process: Side is missing\n";
-            return 0;
-        } else if(mainBreakfast>1 && sideBreakfast>1){
-            cout<<"Unable to process: Eggs and Toasts can not be ordered more than once.\n";
-            return 0;
-        }else if(mainBreakfast>1){
-            cout<<"Unable to process: Eggs can not be ordered more than once.\n";
-            return 0;
-        }else if(sideBreakfast>1){
-            cout<<"Unable to process: Side can not be ordered more than once.\n";
-            return 0;
-        }
-        int coffeeCount = ump[3];
-        cout<<"Eggs, Toast";
-        if(coffeeCount==1){
-            cout<<", Coffee\n";
-        } 
-        else if(coffeeCount>1){
-            cout<<" Coffee("<<coffeeCount<<")\n";
-        }
-
+        Breakfast bfObj;
+        bfObj.output(order);
     } else if(meal == "lunch"){
         vector<int>order;
         while(1){
@@ -112,39 +188,10 @@ int main(){
             if(inp==1 || inp==2 || inp==3)
                 order.push_back(inp);
         }
-        unordered_map<int,int> ump;
-        for(int c: order){
-            ump[c]++;
-        }
-        int mainLunchCount = ump[1];
-        int sideLunchCount = ump[2];
-        if(mainLunchCount==0 && sideLunchCount==0) {
-            cout<<"Unable to process: Main is missing, Side is missing\n";
-            return 0;
-        } else if(mainLunchCount==0){
-            cout<<"Unable to process: Main is missing\n";
-            return 0;
-        } else if(sideLunchCount==0){
-            cout<<"Unable to process: Side is missing\n";
-            return 0;
-        } else if(mainLunchCount>1){
-            cout<<"Unable to process: Sandwich can not be ordered more than once.\n";
-            return 0;
-        }
-        cout<<"Sandwich";
-        if(sideLunchCount==1){
-            cout<<", Chips";
-        } 
-        else if(sideLunchCount>1){
-            cout<<" Chips("<<sideLunchCount<<")";
-        }
-        int sodaCount = ump[3];
-        if(sodaCount==0){
-            cout<<", Water.\n";
-        } else{
-            cout<<", Soda.";
-        }
 
+        Lunch lObj;
+        lObj.output(order);
+        
     } else if(meal == "dinner"){
         vector<int>order;
         while(1){
@@ -161,45 +208,8 @@ int main(){
             if(inp==1 || inp==2 || inp==3 || inp==4)
                 order.push_back(inp);
         }
-        unordered_map<int,int> ump;
-        for(int c: order){
-            ump[c]++;
-        }
-        int mainDinnerCount = ump[1];
-        int sideDinnerCount = ump[2];
-        int wineCount = ump[3];
-        int cakeCount = ump[4];
-        if(mainDinnerCount==0 && sideDinnerCount==0) {
-            cout<<"Unable to process: Main is missing, Side is missing\n";
-            return 0;
-        } else if(mainDinnerCount==0){
-            cout<<"Unable to process: Main is missing\n";
-            return 0;
-        } else if(sideDinnerCount==0){
-            cout<<"Unable to process: Side is missing\n";
-            return 0;
-        } else if(cakeCount==0){
-            cout<<"Unable to process: Dessert is missing\n";
-            return 0;
-        } else if(mainDinnerCount>1){
-            cout<<"Unable to process: Steak can not be ordered more than once.\n";
-            return 0;
-        }else if(sideDinnerCount>1){
-            cout<<"Unable to process: Potatoes can not be ordered more than once.\n";
-            return 0;
-        }else if(wineCount>1){
-            cout<<"Unable to process: Wine can not be ordered more than once.\n";
-            return 0;
-        }else if(cakeCount>1){
-            cout<<"Unable to process: Cake can not be ordered more than once.\n";
-            return 0;
-        }
-        cout<<"Steak, Potatoes";
-        if(wineCount){
-            cout<<", Wine, Water, Cake.\n";
-        }else{
-            cout<<", Water, Cake.\n";
-        }
+        Dinner dObj;
+        dObj.output(order);
 
     } else{
         cout<<"Not a valid menu.";

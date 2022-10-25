@@ -1,5 +1,5 @@
 output: evive.o
-	g++ evive.cpp
+	g++ evive.cpp -o output
 
 evive.o: evive.cpp
 	g++ -c evive.cpp	
